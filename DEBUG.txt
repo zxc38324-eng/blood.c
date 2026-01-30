@@ -1,0 +1,140 @@
+╔══════════════════════════════════════════════════════════════╗
+║                  ОТЛАДКА BLOOD.C - DEBUG                     ║
+╚══════════════════════════════════════════════════════════════╝
+
+❌ СКРИПТ НЕ ЗАПУСКАЕТСЯ БЕЗ ОШИБКИ?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 ШАГ 1: ПРОВЕРЬ PLACEID
+
+Выполни в эксплойте:
+print(game.PlaceId)
+
+Должно быть: 120822170036689
+
+Если другое число - ты не в игре Boom Hood!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 ШАГ 2: ПРОВЕРЬ GITHUB
+
+Открой в браузере:
+https://raw.githubusercontent.com/zxc38324-eng/blood.c/main/blood_modular/loader.lua
+
+Должен открыться код скрипта.
+
+Если 404 ошибка:
+- Файлы не загружены на GitHub
+- Репозиторий называется не "blood.c"
+- Репозиторий Private (должен быть Public)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 ШАГ 3: ТЕСТОВАЯ ЗАГРУЗКА
+
+Выполни в эксплойте:
+
+local success, err = pcall(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/zxc38324-eng/blood.c/main/blood_modular/loader.lua"))()
+end)
+
+if not success then
+    warn("ERROR:", err)
+end
+
+Это покажет точную ошибку!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 ШАГ 4: ПРОВЕРЬ КОНСОЛЬ
+
+После выполнения команды должны быть сообщения:
+
+✅ ПРАВИЛЬНО:
+blood.c: Starting loader...
+blood.c: Current PlaceId: 120822170036689
+blood.c: Loading for Boom Hood
+Loading core modules...
+Loading game modules...
+...
+
+❌ НЕПРАВИЛЬНО (игра не поддерживается):
+blood.c: Starting loader...
+blood.c: Current PlaceId: 123456789
+blood.c: This game is not supported!
+
+❌ НЕПРАВИЛЬНО (нет интернета):
+HttpService is not allowed to access this URL
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 ЧАСТЫЕ ОШИБКИ:
+
+1. "This game is not supported"
+   → Ты не в Boom Hood (PlaceId: 120822170036689)
+   → Решение: Зайди в правильную игру
+
+2. "404: Not Found"
+   → Файлы не на GitHub
+   → Решение: Загрузи папку blood_modular на GitHub
+
+3. "HttpService is not allowed"
+   → Эксплойт блокирует HTTP запросы
+   → Решение: Используй другой эксплойт
+
+4. "loadstring is not available"
+   → Эксплойт не поддерживает loadstring
+   → Решение: Используй другой эксплойт
+
+5. Скрипт загружается но ничего не происходит
+   → UI библиотека не загрузилась
+   → Решение: Проверь интернет, попробуй еще раз
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🛠️ ПОЛНАЯ ДИАГНОСТИКА
+
+Выполни этот скрипт для полной проверки:
+
+print("=== BLOOD.C DIAGNOSTIC ===")
+print("PlaceId:", game.PlaceId)
+print("Game:", game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
+print("\nTesting HTTP...")
+local httpTest = pcall(function()
+    game:HttpGet("https://google.com")
+end)
+print("HTTP works:", httpTest)
+print("\nTesting loadstring...")
+local loadTest = pcall(function()
+    loadstring("print('test')")()
+end)
+print("loadstring works:", loadTest)
+print("\nTesting GitHub...")
+local githubTest = pcall(function()
+    game:HttpGet("https://raw.githubusercontent.com/zxc38324-eng/blood.c/main/blood_modular/loader.lua")
+end)
+print("GitHub accessible:", githubTest)
+print("\n=== DIAGNOSTIC COMPLETE ===")
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 ЕСЛИ НИЧЕГО НЕ ПОМОГАЕТ:
+
+1. Перезагрузи игру
+2. Перезапусти эксплойт
+3. Проверь что все файлы загружены на GitHub
+4. Убедись что репозиторий Public
+5. Попробуй другой эксплойт
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ ПРАВИЛЬНАЯ КОМАНДА ЗАПУСКА:
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/zxc38324-eng/blood.c/main/blood_modular/loader.lua"))()
+
+Скопируй точно как написано!
+
+╔══════════════════════════════════════════════════════════════╗
+║              Если проблема не решена - напиши мне            ║
+╚══════════════════════════════════════════════════════════════╝
